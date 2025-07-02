@@ -1,0 +1,33 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    ports:
+      - "8000:8000"
+      - "9443:9443"   # Internal
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - portainer-net
+
+  nginx:
+    image: "nginx"
+    container_name: portainer-nginx
+    ports:
+      - "80:80"
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - portainer
+    networks:
+      - portainer-net
+
+volumes:
+  portainer_data:
+
+networks:
+  portainer-net:
