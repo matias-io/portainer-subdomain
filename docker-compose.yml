@@ -41,6 +41,8 @@ services:
 
 volumes:
   portainer_data:
+  certbot-etc:
+  certbot-var:
 
 networks:
   portainer-net:
