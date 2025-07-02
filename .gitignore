@@ -1,2 +1,6 @@
 .env
 **/.env
+
+# Ignore certs folder
+certs/fullchain.pem
+certs/privkey.pem

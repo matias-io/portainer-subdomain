@@ -11,29 +11,30 @@ services:
       - portainer_data:/data
     networks:
       - portainer-net
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - ./certbot:/certbot
-    entrypoint: "/certbot/certbot-entrypoint.sh"
-    environment:
-      - DOMAIN_NAME=${DOMAIN_NAME}
-      - EMAIL=${EMAIL}
-    networks:
-      - portainer-net
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   volumes:
+  #     - certbot-etc:/etc/letsencrypt
+  #     - certbot-var:/var/lib/letsencrypt
+  #     - ./certbot:/certbot
+  #   entrypoint: "/certbot/certbot-entrypoint.sh"
+  #   environment:
+  #     - DOMAIN_NAME=${DOMAIN_NAME}
+  #     - EMAIL=${EMAIL}
+  #   networks:
+  #     - portainer-net
   nginx:
-    build:
-      context: ./nginx
+    # build:
+    #   context: ./nginx
+    image: "nginx"
     container_name: portainer-nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt:ro
+      - ./certs:/etc/letsencrypt:ro
     depends_on:
       - portainer
     networks:
@@ -41,8 +42,8 @@ services:
 
 volumes:
   portainer_data:
-  certbot-etc:
-  certbot-var:
+  # certbot-etc:
+  # certbot-var:
 
 networks:
   portainer-net:

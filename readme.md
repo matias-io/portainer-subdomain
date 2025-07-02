@@ -15,4 +15,4 @@ This will use the existing portainer_data volume, and as such you should be able
 
 # SSL HTTPS Certificate
 
-This Docker compose also features self-hosted SSL certificate with certbot, feel free to remove it if you do not need it.
+This Docker compose also features an optional ssl for the web server, simply put your fullchain.pem and privkey.pem in the /certs folder
