@@ -12,8 +12,6 @@ services:
     networks:
       - portainer-net
   nginx:
-    # build:
-    #   context: ./nginx
     image: "nginx"
     container_name: portainer-nginx
     ports:
