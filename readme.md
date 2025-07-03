@@ -15,4 +15,4 @@ This will use the existing portainer_data volume, and as such you should be able
 
 # SSL HTTPS Certificate
 
-This Docker compose also features an optional ssl for the web server, simply put your fullchain.pem and privkey.pem in the /certs folder
+This Docker compose also features an optional ssl for the web server, simply put your fullchain.pem and privkey.pem in the /certs folder. Otherwise commment out the ssl configurations and 443 ports.
